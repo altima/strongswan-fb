@@ -3,7 +3,7 @@ version: '2'
 services:
   vpn:
     container_name: vpn
-    image: altima/stringswan-fb
+    image: enno0815de/strongswan-fb
     environment:
         - SERVER_FQDN=remote.example.com
         - SERVER_NET=192.168.42.0
