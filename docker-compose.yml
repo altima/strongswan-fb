@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+  vpn:
+    container_name: vpn
+    image: altima/stringswan-fb
+    environment:
+        - SERVER_FQDN=remote.example.com
+        - SERVER_NET=192.168.42.0
+        - FB_FQDN=myfb.myfritz.net
+        - FB_NET=192.168.178.0
+        - VPN_PSK=S3cret123!
+    restart: always
+    volumes:
+        - /lib/modules:/lib/modules
+        - /etc/localtime:/etc/localtime
+    ports:
+     - "500:500"
+     - "4500:4500"
+    tmpfs: /run
+    privileged: yes
+    networks:
+      vpcbr:
+        ipv4_address: 10.5.0.5
+
+networks:
+    vpcbr:
+      driver: bridge
+      ipam:
+       config:
+         - subnet: 192.168.42.0/24
+           gateway: 192.168.42.1
