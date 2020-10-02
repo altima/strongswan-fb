@@ -2,7 +2,7 @@ version: '2'
 
 services:
   vpn:
-    container_name: vpn
+    build: ./.
     image: enno0815de/strongswan-fb
     environment:
         - SERVER_FQDN=remote.example.com
