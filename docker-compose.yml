@@ -20,11 +20,11 @@ services:
     tmpfs: /run
     privileged: yes
     networks:
-      vpcbr:
+      vpn-fb:
         ipv4_address: 192.168.42.10
 
 networks:
-    vpcbr:
+    vpn-fb:
       driver: bridge
       ipam:
        config:
