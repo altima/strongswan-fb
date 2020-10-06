@@ -4,12 +4,8 @@ services:
   vpn:
     build: ./.
     image: enno0815de/strongswan-fb
-    environment:
-        - SERVER_FQDN=remote.example.com
-        - SERVER_NET=192.168.42.0
-        - FB_FQDN=myfb.myfritz.net
-        - FB_NET=192.168.178.0
-        - VPN_PSK=S3cret123!
+    env_file:
+      - ./config.env
     restart: always
     volumes:
         - /lib/modules:/lib/modules
