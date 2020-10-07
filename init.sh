@@ -19,9 +19,10 @@ fi
 
 cat > /etc/ipsec.d/ipsec.conf <<_EOF_
 config setup
+ ikev2=no
 conn %default
  left=${SERVER_FQDN}
- leftsubnet=${SERVER_SUBNET}/24
+ leftsubnet=${SERVER_NET}/24
  authby=secret
  auto=start
 
@@ -30,11 +31,10 @@ conn fb
  esp=aes256-sha1-modp1024
  right=${FB_FQDN}
  rightid=@${FB_FQDN}
- rightsubnet=${FB_SUBNET}/24
+ rightsubnet=${FB_NET}/24
  ikelifetime=3600s
  keylife=3600s
  compress=yes
- ikev2=no
 _EOF_
 
 
@@ -77,18 +77,18 @@ vpncfg {
     use_cfgmode = no;
     phase2localid {
       ipnet {
-        ipaddr = ${FB_SUBNET};
+        ipaddr = ${FB_NET};
         mask = 255.255.255.0;
       }
     }
     phase2remoteid {
       ipnet {
-        ipaddr = ${SERVER_SUBNET};
+        ipaddr = ${SERVER_NET};
         mask = 255.255.255.0;
       }
     }
     phase2ss = "esp-all-all/ah-none/comp-all/pfs";
-    accesslist = "permit ip any ${SERVER_SUBNET} 255.255.255.0";
+    accesslist = "permit ip any ${SERVER_NET} 255.255.255.0";
   }
   ike_forward_rules = "udp 0.0.0.0:500 0.0.0.0:500", 
   "udp 0.0.0.0:4500 0.0.0.0:4500";
