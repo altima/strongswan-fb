@@ -2,7 +2,6 @@ version: '3'
 
 services:
   vpn:
-    build: ./.
     image: enno0815de/strongswan-fb
     env_file:
       - ./config.env
@@ -25,4 +24,3 @@ networks:
       ipam:
        config:
          - subnet: 192.168.42.0/24
-           gateway: 192.168.42.1
