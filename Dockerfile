@@ -18,4 +18,6 @@ ENV VPN_PSK=S3cret123!
 
 EXPOSE 500/udp 4500/udp
 
+RUN chmod +x /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
