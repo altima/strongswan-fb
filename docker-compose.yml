@@ -14,7 +14,8 @@ services:
      - "500:500"
      - "4500:4500"
     tmpfs: /run
-    privileged: yes
+    cap_add:
+      - NET_ADMIN
     networks:
       vpn-fb:
         ipv4_address: 192.168.42.10

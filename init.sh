@@ -20,24 +20,26 @@ fi
 cat > /etc/ipsec.d/ipsec.conf <<_EOF_
 config setup
 
-conn %default
+conn fb
+  aggressive=yes
   left=${SERVER_FQDN}
-  leftid=${SERVER_FQDN}
   leftsubnet=${SERVER_NET}/24
+  leftfirewall=yes
+  lefthostaccess=yes
+  right=${FB_FQDN}
+  rightsubnet=${FB_NET}/24
+  leftid="@${SERVER_FQDN}"
+  rightid="@${FB_FQDN}"
+  ike=aes256-sha1-modp1024
+  esp=aes256-sha1-modp1024
+  keyexchange=ikev1
+  ikelifetime=1h
+  keylife=8h
+  dpdaction=none
+  dpddelay=30
+  dpdtimeout=120
   authby=secret
   auto=start
-
-conn fb
-	keyexchange=ikev1
-	aggressive=yes
-	ike=aes192-sha1-modp2048!
-	esp=aes192-sha1-modp2048!
-	leftauth=psk
-	right=${FB_FQDN}
-	rightauth=psk
-	rightsubnet=${FB_NET}/24
-	dpdaction=hold
-	auto=route
 _EOF_
 
 
@@ -58,8 +60,8 @@ vpncfg {
         connections {
                 enabled = yes;
                 conn_type = conntype_lan;
-                name = "server";
-                always_renew = no;
+                name = "${SERVER_FQDN}";
+                always_renew = yes;
                 reject_not_encrypted = no;
                 dont_filter_netbios = yes;
                 localip = 0.0.0.0;
@@ -73,8 +75,8 @@ vpncfg {
                 remoteid {
                         fqdn = "${SERVER_FQDN}";
                 }
-                mode = phase1_mode_aggressive;
-                phase1ss = "dh14/aes/sha";
+                mode = phase1_mode_idp;
+                phase1ss = "all/all/all";
                 keytype = connkeytype_pre_shared;
                 key = "${VPN_PSK}";
                 cert_do_server_auth = no;
