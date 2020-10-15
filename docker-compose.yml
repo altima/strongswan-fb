@@ -2,6 +2,7 @@ version: '3'
 
 services:
   vpn:
+    build: ./
     image: enno0815de/strongswan-fb
     env_file:
       - ./config.env
