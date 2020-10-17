@@ -5,5 +5,3 @@
 
 /init.sh
 exec ipsec start --nofork "$@"
-
-# test
