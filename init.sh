@@ -22,7 +22,7 @@ config setup
 
 conn fb
   aggressive=yes
-  left=${SERVER_FQDN}
+  left=${SERVER_IP}
   leftsubnet=${SERVER_NET}/24
   leftfirewall=yes
   lefthostaccess=yes
@@ -44,7 +44,7 @@ _EOF_
 
 
 cat > /etc/ipsec.d/ipsec.secrets <<_EOF_
-@${SERVER_FQDN} @${FB_FQDN} : PSK "${VPN_PSK}"
+@${SERVER_IP} @${FB_FQDN} : PSK "${VPN_PSK}"
 _EOF_
 
 cat > /etc/strongswan.d/charon.conf <<_EOF_

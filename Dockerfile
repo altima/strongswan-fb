@@ -12,6 +12,7 @@ VOLUME /etc/ipsec.d /etc/strongswan.d
 
 ENV SERVER_FQDN=remote.example.com
 ENV SERVER_NET=192.168.42.0
+ENV SERVER_IP=192.168.42.10
 ENV FB_FQDN=myfb.myfritz.net
 ENV FB_NET=192.168.178.0
 ENV VPN_PSK=S3cret123!
