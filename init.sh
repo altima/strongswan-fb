@@ -21,30 +21,25 @@ cat > /etc/ipsec.d/ipsec.conf <<_EOF_
 config setup
 
 conn fb
+  keyexchange=ikev1
   aggressive=yes
-  left=${SERVER_IP}
-  leftsubnet=${SERVER_NET}/24
-  leftfirewall=yes
-  lefthostaccess=yes
-  right=${FB_FQDN}
-  rightsubnet=${FB_NET}/24
-  leftid="@${SERVER_FQDN}"
-  rightid="@${FB_FQDN}"
   ike=aes256-sha1-modp1024
   esp=aes256-sha1-modp1024
-  keyexchange=ikev1
-  ikelifetime=1h
-  keylife=8h
+  left=${SERVER_IP}
+  leftid="@${SERVER_FQDN}"
+  leftsubnet=${SERVER_NET}/24
+  leftauth=psk
+  right=${FB_FQDN}
+  rightsubnet=${FB_NET}/24
+  rightauth=psk
   dpdaction=none
-  dpddelay=30
-  dpdtimeout=120
-  authby=secret
+  #authby=psk
   auto=start
 _EOF_
 
 
 cat > /etc/ipsec.d/ipsec.secrets <<_EOF_
-@${SERVER_IP} @${FB_FQDN} : PSK "${VPN_PSK}"
+@${SERVER_FQDN} @${FB_FQDN} : PSK "${VPN_PSK}"
 _EOF_
 
 cat > /etc/strongswan.d/charon.conf <<_EOF_
