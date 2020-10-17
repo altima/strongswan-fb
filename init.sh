@@ -32,7 +32,7 @@ conn fb
   right=${FB_FQDN}
   rightsubnet=${FB_NET}/24
   rightauth=psk
-  dpdaction=none
+  dpdaction=restart
   #authby=psk
   auto=start
 _EOF_
