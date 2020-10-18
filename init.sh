@@ -35,6 +35,8 @@ conn fb
   dpdaction=restart
   #authby=psk
   auto=start
+  closeaction=restart
+  keyingtries=%forever
 _EOF_
 
 
