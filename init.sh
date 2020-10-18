@@ -36,6 +36,8 @@ conn fb
   auto=start
   closeaction=restart
   keyingtries=%forever
+  rekey=yes
+  reauth=yes
 _EOF_
 
 
