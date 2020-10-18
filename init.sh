@@ -33,8 +33,6 @@ conn fb
   rightsubnet=${FB_NET}/24
   rightauth=psk
   dpdaction=restart
-  dpddelay=60s
-  dpdtimeout=300s
   auto=start
   closeaction=restart
 _EOF_
