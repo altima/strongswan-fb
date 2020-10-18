@@ -35,10 +35,8 @@ conn fb
   dpdaction=restart
   dpddelay=60s
   dpdtimeout=300s
-  #authby=psk
   auto=start
   closeaction=restart
-  keyingtries=%forever
 _EOF_
 
 
@@ -46,11 +44,11 @@ cat > /etc/ipsec.d/ipsec.secrets <<_EOF_
 @${SERVER_FQDN} @${FB_FQDN} : PSK "${VPN_PSK}"
 _EOF_
 
-cat > /etc/strongswan.d/charon.conf <<_EOF_
-charon {
-	i_dont_care_about_security_and_use_aggressive_mode_psk = yes
-}
-_EOF_
+#cat > /etc/strongswan.d/charon.conf <<_EOF_
+#charon {
+#	i_dont_care_about_security_and_use_aggressive_mode_psk = yes
+#}
+#_EOF_
 
 # gen config for fritzbox
 
