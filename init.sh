@@ -35,6 +35,7 @@ conn fb
   dpdaction=restart
   auto=start
   closeaction=restart
+  keyingtries=%forever
 _EOF_
 
 
