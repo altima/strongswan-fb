@@ -29,6 +29,7 @@ conn fb
   leftid="@${SERVER_FQDN}"
   leftsubnet=${SERVER_NET}/24
   leftauth=psk
+  leftfirewall=yes
   right=${FB_FQDN}
   rightsubnet=${FB_NET}/24
   rightauth=psk
